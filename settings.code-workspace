@@ -1,0 +1,28 @@
+{
+    "folders": [
+        {
+            "path": "."
+        },
+        {
+            "path": "workspace/examples/word_language_model"
+        }
+    ],
+    "settings": {
+        "editor.tabSize": 4,
+        "editor.insertSpaces": true,
+        "editor.detectIndentation": false,
+        "editor.wordWrap": "on",
+        "editor.formatOnSave": true,
+        "python.linting.banditEnabled": true,
+        "autoDocstring.docstringFormat": "google",
+        "python.linting.flake8Enabled": true,
+        "python.formatting.provider": "black",
+        "python.linting.flake8Args": [
+            "--ignore E203, E501, W503"
+        ],
+        "cSpell.words": [
+            "tmux",
+            "venv"
+        ],
+    }
+}
