@@ -1,10 +1,16 @@
 {
     "folders": [
         {
-            "path": "."
+            "name": "word_language_model",
+            "path": "workspace/examples/word_language_model"
         },
         {
-            "path": "workspace/examples/word_language_model"
+            "name": "awd-lstm-lm",
+            "path": "workspace/awd-lstm-lm"
+        },
+        {
+            "name": "vscode-python-docker-setup",
+            "path": "."
         }
     ],
     "settings": {
@@ -12,7 +18,7 @@
         "editor.insertSpaces": true,
         "editor.detectIndentation": false,
         "editor.wordWrap": "on",
-        "editor.formatOnSave": true,
+        "editor.formatOnSave": false,
         "python.linting.banditEnabled": true,
         "python.linting.flake8Enabled": true,
         "python.formatting.provider": "black",
