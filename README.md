@@ -2,77 +2,68 @@
 
 A template for Python projects using Docker, `uv`, and Hydra, with a focus on a consistent and reproducible environment.
 
-## The Why: Philosophy & Tools
-
-This template is built on a set of modern tools chosen to solve common problems in Python development:
-
-- **Why Docker?** To ensure consistency between development and production environments. What works on your machine will work in deployment.
-- **Why `uv`?** For extremely fast dependency management. It replaces `pip` and `venv` with a single, high-performance tool.
-- **Why Hydra?** For flexible and powerful configuration. It allows you to manage complex configurations, automatically handles logging, and manages output directories.
-- **Why Dev Containers?** For a seamless development experience. It lets you define your development environment as code, ensuring every team member has the exact same setup.
-
-## The How: Practical Guide
+## Getting Started
 
 ### Requirements
 
-- **Docker and Docker Compose** (Required)
-- **Visual Studio Code** with the **[Remote - Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)** extension (Recommended for the intended development workflow).
+- **Docker and Docker Compose**
+- **Visual Studio Code** with the **[Remote - Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)** extension. (Recommended for the intended development workflow).
 
-### Development Workflow
+### Setup
 
-1. **Clone the repository and open it in VS Code.**
-2. When prompted, select **"Reopen in Container"**. This builds the dev container and uses `uv pip sync` to install all dependencies from `pyproject.toml`.
-3. **Run the application:**
+1. **Start a new project**: Download this repository as a ZIP file and extract it to your new project folder.
+2. **Rename the project**: Change the project folder as well as project name in `pyproject.toml` and `.devcontainer/devcontainer.json` to your desired project name.
+3. **Git Initialization**: Initialize a new Git repository in your project folder if needed.
+4. **Open in VS Code**: Open the project folder in Visual Studio Code.
+5. **Reopen in Container**: When prompted, select **"Reopen in Container"**. This uses the `.devcontainer/devcontainer.json` configuration to build a consistent development environment with Docker. It will automatically install all dependencies from `pyproject.toml` for you.
 
-   ```bash
-   uv run python src/main.py
-   ```
+### Development Cycle
 
-4. **Run tests:**
+- **Run the application**:
 
-   ```bash
-   pytest
-   ```
+  ```bash
+  uv run python src/main.py
+  ```
+
+- **Run tests**:
+
+  ```bash
+  pytest
+  ```
+
+## Key Concepts
 
 ### Configuration
 
-Configuration is split into two parts:
+Configuration is managed in two places:
 
-- **`conf/config.yaml`**: For non-sensitive application settings, managed by Hydra.
-- **`.env` file**: For secrets and environment-specific variables. Copy `.env.example` to `.env` to get started.
+- **`conf/config.yaml`**: For non-sensitive application settings, managed by [Hydra](https://hydra.cc/). Hydra also automatically handles logging and output directories based on this file.
+- **`.env`**: For secrets and environment-specific variables. Copy `.env.example` to `.env` to get started.
 
-### Deployment Workflow
+### Dependency Management
 
-1. The `Dockerfile` creates a production-ready image. It uses `uv sync` with the `uv.lock` file to guarantee a reproducible build with exact dependency versions.
-2. To build and run the image, use Docker Compose:
+This template uses [uv](https://github.com/astral-sh/uv) for high-performance dependency management.
 
-   ```bash
-   docker-compose up --build
-   ```
+- **For Development**: The dev container uses `uv sync` to keep your environment up-to-date with `pyproject.toml`.
+- **For Production**: The `Dockerfile` uses `uv sync` with the `uv.lock` file to create a reproducible build with pinned dependencies.
 
-## Customizing the Template
+### Deployment
 
-To adapt this template for your own project, you'll want to update the project name in the following files:
-
-- **`pyproject.toml`**: Update the `name` field under the `[project]` section. This is the official name of your Python package.
-- **`.devcontainer/devcontainer.json`**: Update the `name` field. This sets the name of the dev container.
-
-After changing the name in `pyproject.toml`, you should regenerate the lock file to ensure consistency:
+To create a production-ready build, use Docker Compose:
 
 ```bash
-uv pip compile pyproject.toml -o uv.lock
+docker compose up --build
 ```
 
-## Technical Details & Design Decisions
+This command uses the `Dockerfile` to build a self-contained image and run it.
 
-This section explains the reasoning behind some of the key architectural choices in this template.
+## Customization
 
-- **Development vs. Production Environments**: The setup intentionally separates the development environment from the production build. The `.devcontainer` is for a rich, interactive development experience inside VS Code, while the `Dockerfile` and `docker-compose.yml` are optimized for creating a lean, reproducible production image.
+To make this template your own:
 
-- **Dependency Management**: The template uses two different `uv` commands for a reason. In the dev container, `uv pip sync` (or `uv pip install -e .[test]`) is used to install dependencies directly from `pyproject.toml`, ensuring the environment always has the latest packages for development. In the `Dockerfile`, `uv sync` is used with the `uv.lock` file to guarantee that production builds are reproducible with exact package versions.
+1. **Set your project name** in `pyproject.toml` and `.devcontainer/devcontainer.json`.
+2. **Regenerate the lock file** to reflect the new name:
 
-- **Configuration Strategy**: Configuration is split into two layers. `conf/config.yaml` is for non-sensitive, version-controlled settings. The `.env` file is for secrets and environment-specific values that should not be committed to version control.
-
-- **`uv run` for Execution**: The `CMD` in the `Dockerfile` and the `command` in `docker-compose.yml` use `uv run`. This is a deliberate choice to ensure that the application always runs within the context of the `uv`-managed virtual environment, avoiding potential issues with `PATH` and environment variables.
-
-- **Testability**: The core logic in `src/main.py` is intentionally separated from the `@hydra.main` decorator. This pattern makes the application's logic straightforward to import and test directly, without needing to involve Hydra in the unit tests.
+   ```bash
+   uv pip compile pyproject.toml -o uv.lock
+   ```
