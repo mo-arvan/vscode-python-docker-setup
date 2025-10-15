@@ -1,0 +1,38 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python Debugger: Current File",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            // set current working directory to the workspace folder
+            // set the environment variables from the .env file
+            "envFile": "${workspaceFolder}/.env"
+            // "args": [
+            //     "hydra.run.dir=outputs/gpt-4o-medmcqa",
+            //                     "--output_dir",
+            //     "outputs/gpt-4o-dev"
+            // ]
+        },
+        {
+            "name": "Benchmark",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "src/benchmark.py",
+            "console": "integratedTerminal",
+            // set current working directory to the workspace folder
+            // set the environment variables from the .env file
+            "envFile": "${workspaceFolder}/.env"
+            // "args": [
+            //     "hydra.run.dir=outputs/gpt-4o-medmcqa",
+            //                     "--output_dir",
+            //     "outputs/gpt-4o-dev"
+            // ]
+        }
+    ]
+}

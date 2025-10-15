@@ -1,0 +1,11 @@
+# Configuration for a single benchmark experiment
+defaults:
+  - _self_
+  - provider: openai # By default, we are benchmarking the OpenAI provider.
+
+
+
+# Benchmark configuration
+repetitions: 10
+output_filename: "results.json"
+  frequency_penalty: null
