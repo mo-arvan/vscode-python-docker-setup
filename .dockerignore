@@ -1,2 +1,59 @@
-.venv
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Environment files
 .env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Outputs
+outputs/
+logs/
+*.log
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Docker
+.dockerignore
+Dockerfile
+docker-compose*.yml
+
+# Documentation
+README.md
+docs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Dev container
+.devcontainer/

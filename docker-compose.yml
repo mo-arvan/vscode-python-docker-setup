@@ -1,14 +1,12 @@
 services:
-  benchmark:
+  app:
     build:
       context: .
-      dockerfile: api.Dockerfile
+      dockerfile: python.Dockerfile
     env_file:
       - .env
     volumes:
       - ./outputs:/app/outputs
-      - ./src:/app/src
-      - ./conf:/app/conf
-      - ./prompts:/app/prompts
     tty: true
     stdin_open: true
+    command: uv run python src/main.py

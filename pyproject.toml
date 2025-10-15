@@ -1,7 +1,7 @@
 [project]
-name = "llm-api-latency"
+name = "python-project-template"
 version = "0.1.0"
-description = "Add your description here"
+description = "A modern Python project template with uv, Hydra, Docker, and dev container support"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
@@ -10,6 +10,7 @@ dependencies = [
     "lxml>=5.3.2",
     "pandas>=2.2.3",
     "pydantic>=2.11.3",
+    "pytest>=8.4.2",
     "tenacity>=9.1.2",
     "tqdm>=4.67.1",
 ]

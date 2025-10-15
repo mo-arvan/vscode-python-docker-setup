@@ -5,34 +5,16 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python Debugger: Current File",
+            "name": "Python: Main Application (Debug Mode)",
             "type": "debugpy",
             "request": "launch",
-            "program": "${file}",
+            "program": "src/main.py",
             "console": "integratedTerminal",
-            // set current working directory to the workspace folder
-            // set the environment variables from the .env file
-            "envFile": "${workspaceFolder}/.env"
-            // "args": [
-            //     "hydra.run.dir=outputs/gpt-4o-medmcqa",
-            //                     "--output_dir",
-            //     "outputs/gpt-4o-dev"
-            // ]
-        },
-        {
-            "name": "Benchmark",
-            "type": "debugpy",
-            "request": "launch",
-            "program": "src/benchmark.py",
-            "console": "integratedTerminal",
-            // set current working directory to the workspace folder
-            // set the environment variables from the .env file
-            "envFile": "${workspaceFolder}/.env"
-            // "args": [
-            //     "hydra.run.dir=outputs/gpt-4o-medmcqa",
-            //                     "--output_dir",
-            //     "outputs/gpt-4o-dev"
-            // ]
+            "cwd": "${workspaceFolder}",
+            "envFile": "${workspaceFolder}/.env",
+            "args": [
+                "logging.level=DEBUG"
+            ]
         }
     ]
 }
