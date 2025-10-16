@@ -9,4 +9,4 @@ services:
       - ./outputs:/app/outputs
     tty: true
     stdin_open: true
-    command: uv run python src/main.py
+    command: python src/main.py

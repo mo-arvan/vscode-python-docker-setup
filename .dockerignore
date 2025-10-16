@@ -31,6 +31,11 @@ env/
 .coverage
 htmlcov/
 .tox/
+tests/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
 
 # Outputs
 outputs/
@@ -46,6 +51,7 @@ logs/
 .dockerignore
 Dockerfile
 docker-compose*.yml
+dev.Dockerfile  # Development-only Dockerfile
 
 # Documentation
 README.md

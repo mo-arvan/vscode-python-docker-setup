@@ -35,7 +35,7 @@ def validate_config(config: dict[str, Any]) -> bool:
     Returns:
         True if valid, False otherwise
     """
-    required_keys = ["app", "logging", "output"]
+    required_keys = ["app", "logging"]
     
     for key in required_keys:
         if key not in config:
@@ -44,19 +44,3 @@ def validate_config(config: dict[str, Any]) -> bool:
     
     log.debug("Configuration validation passed")
     return True
-
-
-def setup_logging(level: str = "INFO") -> None:
-    """
-    Configure logging for the application.
-
-    Args:
-        level: Log level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
-    """
-    numeric_level = getattr(logging, level.upper(), logging.INFO)
-    logging.basicConfig(
-        level=numeric_level,
-        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-        datefmt='%Y-%m-%d %H:%M:%S'
-    )
-    log.info(f"Logging configured at {level} level")

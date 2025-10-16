@@ -1,8 +1,6 @@
 """Test utilities module."""
 
-import logging
-
-from src.utils import format_output, setup_logging, validate_config
+from src.utils import format_output, validate_config
 
 
 def test_format_output():
@@ -20,7 +18,6 @@ def test_validate_config_valid():
     config = {
         "app": {"name": "test"},
         "logging": {"level": "INFO"},
-        "output": {"dir": "outputs"},
     }
 
     assert validate_config(config) is True
@@ -30,14 +27,7 @@ def test_validate_config_invalid():
     """Test validation with invalid config."""
     config = {
         "app": {"name": "test"}
-        # Missing "logging" and "output"
+        # Missing "logging"
     }
 
     assert validate_config(config) is False
-
-
-def test_setup_logging(caplog):
-    """Test the setup_logging function."""
-    with caplog.at_level(logging.INFO):
-        setup_logging("INFO")
-    assert "Logging configured at INFO level" in caplog.text

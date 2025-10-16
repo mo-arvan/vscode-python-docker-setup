@@ -3,7 +3,7 @@
 {
 	"name": "python-dev",
 	"context": "..",
-	"dockerFile": "../python.Dockerfile",
+	"dockerFile": "../dev.Dockerfile",
 	"workspaceMount": "source=${localWorkspaceFolder},target=/app,type=bind",
 	"workspaceFolder": "/app",
 	"mounts": [
